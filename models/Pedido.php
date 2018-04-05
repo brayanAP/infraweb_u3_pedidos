@@ -55,13 +55,4 @@ class Pedido extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Cliente::className(), ['id' => 'clienteid']);
     }
-
-    /**
-     * @inheritdoc
-     * @return PedidoQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new PedidoQuery(get_called_class());
-    }
 }
