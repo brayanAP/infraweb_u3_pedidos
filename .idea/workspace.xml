@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8435116-a14f-4322-84c3-2f22c58895ee" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/DetallepedidoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/DetallepedidoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Producto.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Producto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ProductoController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ProductoSearch.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/producto/_form.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/producto/_search.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/producto/create.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/producto/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/producto/update.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/producto/view.php" beforeDir="false" />
-    </list>
+    <list default="true" id="b8435116-a14f-4322-84c3-2f22c58895ee" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="298">
-              <caret line="40" column="31" lean-forward="true" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
               <folding>
                 <element signature="e#66#88#0#PHP" expanded="true" />
               </folding>
@@ -98,9 +85,10 @@
       <file leaf-file-name="ProductoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/ProductoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+            <state relative-caret-position="459">
+              <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
               <folding>
+                <element signature="e#35#55#0#PHP" expanded="true" />
                 <element signature="e#351#602#0#PHP" />
               </folding>
             </state>
@@ -209,7 +197,7 @@
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-faker" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="952" />
     <option name="y" value="50" />
     <option name="width" value="977" />
@@ -299,15 +287,15 @@
       <option name="presentableId" value="Default" />
       <updated>1522899025458</updated>
       <workItem from="1522899031765" duration="5897000" />
-      <workItem from="1523081037983" duration="16056000" />
+      <workItem from="1523081037983" duration="16915000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21953000" />
+    <option name="totallyTimeSpent" value="22812000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="33" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="33" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23087248" />
@@ -597,7 +585,7 @@
     <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
-          <caret line="40" column="31" lean-forward="true" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
           <folding>
             <element signature="e#66#88#0#PHP" expanded="true" />
           </folding>
@@ -635,9 +623,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/ProductoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        <state relative-caret-position="459">
+          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
           <folding>
+            <element signature="e#35#55#0#PHP" expanded="true" />
             <element signature="e#351#602#0#PHP" />
           </folding>
         </state>
