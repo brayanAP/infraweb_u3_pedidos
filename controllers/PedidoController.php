@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\User;
+use yii\filters\AccessControl;
 use app\models\Pedido;
 use app\models\PedidoSearch;
 use yii\web\Controller;
@@ -20,10 +22,34 @@ class PedidoController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'index', 'create','update','delete'],
+                'rules' => [
+                    [
+                        'actions' => ['logout', 'index', 'create','update','delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin(Yii::$app->user->identity->id);
+                        },
+                    ],
+                    [
+
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserSimple(Yii::$app->user->identity->id);
+                        },
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
+
                 ],
             ],
         ];
@@ -33,15 +59,32 @@ class PedidoController extends Controller
      * Lists all Pedido models.
      * @return mixed
      */
+
+    public $admin;
+
+    static  function setAdmin($adm){
+       $admin = $adm;
+    }
+
+    function getAdmin(){
+        return $this->admin;
+    }
+
     public function actionIndex()
     {
         $searchModel = new PedidoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        //if($this->getAdmin()){
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        //}else{
+          //  return $this->redirect(['/cliente']);
+        //}
+
+
     }
 
     /**
@@ -67,7 +110,8 @@ class PedidoController extends Controller
         $model = new Pedido();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+                return $this->redirect(['index']);
+
         }
 
         return $this->render('create', [

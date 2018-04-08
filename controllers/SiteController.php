@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,23 +9,45 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
     /**
      * {@inheritdoc}
      */
+
+    public function actionUser(){
+        return $this->render("/cliente");
+    }
+
+    public function actionAdmin(){
+        return $this->render("/pedido");
+    }
+
     public function behaviors()
     {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'cliente', 'pedido'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'pedido'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin(Yii::$app->user->identity->id);
+                        },
+                    ],
+                    [
+
+                        'actions' => ['logout', 'cliente'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserSimple(Yii::$app->user->identity->id);
+                        },
                     ],
                 ],
             ],
@@ -33,10 +55,49 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+
                 ],
             ],
         ];
     }
+
+    public function actionLogin()
+    {
+        if (!\Yii::$app->user->isGuest) {
+
+            if (User::isUserAdmin(Yii::$app->user->identity->id))
+            {
+                PedidoController::setAdmin(true);
+                return $this->redirect(["/pedido"]);
+            }
+            else
+            {
+                PedidoController::setAdmin(false);
+                return $this->redirect(["/cliente"]);
+            }
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
+            if (User::isUserAdmin(Yii::$app->user->identity->id))
+            {
+                PedidoController::setAdmin(true);
+                return $this->redirect(["/pedido"]);
+            }
+            else
+            {
+                PedidoController::setAdmin(false);
+                return $this->redirect(["/cliente"]);
+            }
+
+        } else {
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        }
+    }
+
 
     /**
      * {@inheritdoc}
@@ -69,22 +130,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Logout action.

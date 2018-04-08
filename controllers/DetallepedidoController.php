@@ -3,18 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\User;
-use yii\filters\AccessControl;
-use app\models\Cliente;
-use app\models\ClienteSearch;
+use app\models\Detallepedido;
+use app\models\DetallepedidoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ClienteController implements the CRUD actions for Cliente model.
+ * DetallepedidoController implements the CRUD actions for Detallepedido model.
  */
-class ClienteController extends Controller
+class DetallepedidoController extends Controller
 {
     /**
      * @inheritdoc
@@ -22,45 +20,22 @@ class ClienteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'index', 'create','update','delete'],
-                'rules' => [
-                    [
-                        'actions' => ['logout', 'index', 'create','update','delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return User::isUserAdmin(Yii::$app->user->identity->id);
-                        },
-                    ],
-                    [
-                        'actions' => ['logout','index', 'create','update','delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return User::isUserSimple(Yii::$app->user->identity->id);
-                        },
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
-
+                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
     /**
-     * Lists all Cliente models.
+     * Lists all Detallepedido models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ClienteSearch();
+        $searchModel = new DetallepedidoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -70,7 +45,7 @@ class ClienteController extends Controller
     }
 
     /**
-     * Displays a single Cliente model.
+     * Displays a single Detallepedido model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -83,13 +58,13 @@ class ClienteController extends Controller
     }
 
     /**
-     * Creates a new Cliente model.
+     * Creates a new Detallepedido model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Cliente();
+        $model = new Detallepedido();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -101,7 +76,7 @@ class ClienteController extends Controller
     }
 
     /**
-     * Updates an existing Cliente model.
+     * Updates an existing Detallepedido model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -121,7 +96,7 @@ class ClienteController extends Controller
     }
 
     /**
-     * Deletes an existing Cliente model.
+     * Deletes an existing Detallepedido model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -135,15 +110,15 @@ class ClienteController extends Controller
     }
 
     /**
-     * Finds the Cliente model based on its primary key value.
+     * Finds the Detallepedido model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Cliente the loaded model
+     * @return Detallepedido the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Cliente::findOne($id)) !== null) {
+        if (($model = Detallepedido::findOne($id)) !== null) {
             return $model;
         }
 
