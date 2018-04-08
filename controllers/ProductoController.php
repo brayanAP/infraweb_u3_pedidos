@@ -1,7 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 
+use app\models\User;
+use yii\filters\AccessControl;
 use Yii;
 use app\models\Producto;
 use app\models\ProductoSearch;
@@ -20,10 +22,33 @@ class ProductoController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout', 'index', 'create','update','delete'],
+                'rules' => [
+                    [
+                        'actions' => ['logout', 'index', 'create','update','delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserAdmin(Yii::$app->user->identity->id);
+                        },
+                    ],
+                    [
+                        'actions' => ['logout','index', 'create','update','delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isUserSimple(Yii::$app->user->identity->id);
+                        },
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
+
                 ],
             ],
         ];
