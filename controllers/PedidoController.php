@@ -110,7 +110,7 @@ class PedidoController extends Controller
         $model = new Pedido();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['index']);
+                return $this->redirect(['/detallepedido/create']);
 
         }
 
