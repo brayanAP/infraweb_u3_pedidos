@@ -4,7 +4,7 @@
     <include_path>
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-composer" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-debug" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-gii" />
       <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
@@ -17,7 +17,7 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
       <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/sebastian/version" />
