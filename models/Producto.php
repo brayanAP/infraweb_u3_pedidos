@@ -33,6 +33,7 @@ class Producto extends \yii\db\ActiveRecord
             [['nombrep', 'preciosugerido'], 'required'],
             [['preciosugerido'], 'number'],
             [['nombrep'], 'string', 'max' => 255],
+            [['preciosugerido'],'number','min'=>1]
         ];
     }
 

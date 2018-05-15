@@ -60,6 +60,17 @@ class ProductoController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Producto();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', '¡¡Guardado con exito!!');
+            } else {
+                Yii::$app->session->setFlash('danger', 'ERROR: No se pudo guardar el registro.');
+            }
+            $model = new Producto();
+        }
+
         $searchModel = new ProductoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

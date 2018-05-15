@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
+use app\models\Detallepedido;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\DetallepedidoSearch */
@@ -16,8 +19,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Detallepedido', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+        Modal::begin([
+            'header' => '<h2>Crear Detalle Pedido</h2>',
+            'toggleButton' => ['label' => 'Crear','class' => 'btn btn-success'],
+
+        ]);
+        echo $this->render('/detallepedido/create',['model' => new Detallepedido()]);
+        Modal::end();
+        ?>
     </p>
+
+    <?php Pjax::begin(['id' => 'detallepedidos']);?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,4 +47,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end();?>
 </div>

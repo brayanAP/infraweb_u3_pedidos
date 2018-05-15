@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
+use app\models\Producto;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductoSearch */
@@ -16,9 +19,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Producto', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+        Modal::begin([
+            'header' => '<h2>Crear Producto</h2>',
+            'toggleButton' => ['label' => 'Crear','class' => 'btn btn-success'],
+
+        ]);
+        echo $this->render('/producto/create',['model' => new Producto()]);
+        Modal::end();
+        ?>
     </p>
 
+    <?php Pjax::begin(['id' => 'productos']);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -32,4 +44,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end();?>
 </div>

@@ -37,6 +37,8 @@ class Detallepedido extends \yii\db\ActiveRecord
             [['precio'], 'number'],
             [['pedidoid'], 'exist', 'skipOnError' => true, 'targetClass' => Pedido::className(), 'targetAttribute' => ['pedidoid' => 'id']],
             [['productoid'], 'exist', 'skipOnError' => true, 'targetClass' => Producto::className(), 'targetAttribute' => ['productoid' => 'id']],
+            [['cantidad','precio'], 'number', 'min'=>1],
+
         ];
     }
 

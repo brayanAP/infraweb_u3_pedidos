@@ -51,9 +51,10 @@ class DetallepedidoController extends Controller
                     'logout' => ['post'],
 
                 ],
-            ],
+            ]
         ];
     }
+
 
     /**
      * Lists all Detallepedido models.
@@ -61,6 +62,17 @@ class DetallepedidoController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Detallepedido();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', '¡¡Guardado con exito!!');
+            } else {
+                Yii::$app->session->setFlash('danger', 'ERROR: No se pudo guardar el registro.');
+            }
+        }
+            $model = new Detallepedido();
+
         $searchModel = new DetallepedidoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

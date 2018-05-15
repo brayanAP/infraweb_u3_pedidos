@@ -60,6 +60,17 @@ class ClienteController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Cliente();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', '¡¡Guardado con exito!!');
+            } else {
+                Yii::$app->session->setFlash('danger', 'ERROR: No se pudo guardar el registro.');
+            }
+            $model = new Cliente();
+        }
+
         $searchModel = new ClienteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -91,13 +102,14 @@ class ClienteController extends Controller
     {
         $model = new Cliente();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', '¡¡Guardado con exito!!');
+            } else {
+                Yii::$app->session->setFlash('danger', 'ERROR: No se pudo guardar el registro.');
+            }
+            $model = new Cliente();
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
