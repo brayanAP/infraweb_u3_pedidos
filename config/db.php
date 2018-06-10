@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=pedidos',
+    'dsn' => 'mysql:host=localhost;dbname=pedidoss',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',
